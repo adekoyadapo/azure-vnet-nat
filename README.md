@@ -24,6 +24,7 @@ No resources.
 | <a name="input_adgroup"></a> [adgroup](#input\_adgroup) | Azure ad groups to filter through | `list(string)` | `[]` | no |
 | <a name="input_admin_username"></a> [admin\_username](#input\_admin\_username) | default vm username | `string` | n/a | yes |
 | <a name="input_computer_name"></a> [computer\_name](#input\_computer\_name) | vm name | `string` | `"vm"` | no |
+| <a name="input_exisiting_resource_group_name"></a> [exisiting\_resource\_group\_name](#input\_exisiting\_resource\_group\_name) | Existing resource Group | `string` | `""` | no |
 | <a name="input_location"></a> [location](#input\_location) | Resource Group Location | `string` | `"eastus"` | no |
 | <a name="input_nat_gateway_name"></a> [nat\_gateway\_name](#input\_nat\_gateway\_name) | Nat gateway name | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Resource Group Name | `string` | `"vnet-demo"` | no |
@@ -32,5 +33,9 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_nat_ip"></a> [nat\_ip](#output\_nat\_ip) | Nat GW public IP |
+| <a name="output_vm_ip"></a> [vm\_ip](#output\_vm\_ip) | VM public IP |
+| <a name="output_vm_name"></a> [vm\_name](#output\_vm\_name) | VM Name |
 <!-- END_TF_DOCS -->

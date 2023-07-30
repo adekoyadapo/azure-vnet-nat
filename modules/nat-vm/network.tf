@@ -12,7 +12,8 @@ module "vnet" {
   use_for_each        = each.value.use_for_each
   tags                = var.tags
 
-  nsg_ids = each.key == element(keys(local.source_vnet), 0) ? { element(local.source_subnets_list, 0) = azurerm_network_security_group.vm.id } : {}
+  nsg_ids    = each.key == element(keys(local.source_vnet), 0) ? { element(local.source_subnets_list, 0) = azurerm_network_security_group.vm.id } : {}
+  depends_on = [azurerm_resource_group.rg]
 }
 
 resource "azurerm_virtual_network_peering" "source" {
@@ -21,6 +22,7 @@ resource "azurerm_virtual_network_peering" "source" {
   virtual_network_name      = module.vnet[one([for i in var.vnet : i.name if i.is_source == true])].vnet_name
   remote_virtual_network_id = module.vnet[one([for i in var.vnet : i.name if i.is_source == false])].vnet_id
   allow_forwarded_traffic   = true
+  depends_on                = [azurerm_resource_group.rg, module.vnet]
 
 }
 
@@ -31,5 +33,6 @@ resource "azurerm_virtual_network_peering" "destination" {
   remote_virtual_network_id = module.vnet[one([for i in var.vnet : i.name if i.is_source == true])].vnet_id
   # use_remote_gateways       = true
   allow_forwarded_traffic = true
+  depends_on              = [azurerm_virtual_network_peering.source]
 
 }

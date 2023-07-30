@@ -20,6 +20,6 @@ output "vm_public_ip" {
 
 output "nat_gw_ip" {
   description = "nat gateway IP"
-  value       = azurerm_nat_gateway_public_ip_association.nat_gw.public_ip_address_id
+  value       = azurerm_public_ip.nat_gw.ip_address
 }
 

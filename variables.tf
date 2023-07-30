@@ -17,6 +17,12 @@ variable "resource_group_name" {
   default     = "vnet-demo"
 }
 
+variable "exisiting_resource_group_name" {
+  description = "Existing resource Group"
+  type        = string
+  default     = ""
+}
+
 variable "vnet" {
   description = "Virtual networks"
   type = map(object({
